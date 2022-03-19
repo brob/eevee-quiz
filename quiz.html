@@ -1,0 +1,26 @@
+---
+
+pagination:
+    data: quiz
+    size: 1
+    alias: quiz
+permalink: /quiz/{{ quiz.slug }}/
+---
+<form action="" method="post">
+    {% for question in quiz.questions %}
+    <div class="question">
+        <h3>{{ question.question }}</h3>
+        <ul>
+            {% for answer in question.answers %}
+                <li>
+                    <label>
+                        <input type="radio" name="{{ question.id }}" value="{{ answer.id }}">
+                        {{ answer.answerText }}
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endfor %}
+    <input type="submit" value="Submit">
+</form>
