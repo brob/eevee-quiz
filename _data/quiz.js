@@ -4,7 +4,7 @@ const client = require('@sanity/client')
 const sanityClient = client({
     projectId: 'l13bl0of',
     dataset: 'production',
-    useCdn: true
+    useCdn: false
 })
 
 module.exports = async function () {

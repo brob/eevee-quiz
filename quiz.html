@@ -6,15 +6,16 @@ pagination:
     alias: quiz
 permalink: /quiz/{{ quiz.slug }}/
 ---
-<form action="" method="post">
+<form action="/.netlify/functions/quiz-process" method="post">
     {% for question in quiz.questions %}
     <div class="question">
         <h3>{{ question.question }}</h3>
         <ul>
             {% for answer in question.answers %}
+            {% for value in answer.eeveeValues %}{{value.name}}={{value.value}}{% unless forloop.last %}&{% endunless %}{% endfor %}
                 <li>
                     <label>
-                        <input type="radio" name="{{ question.id }}" value="{{ answer.id }}">
+                        <input type="radio" name="{{ question._id }}" value="{% for value in answer.eeveeValues %}{{value.name}}={{value.value}}{% unless forloop.last %}&{% endunless %}{% endfor %}">
                         {{ answer.answerText }}
                     </label>
                 </li>
